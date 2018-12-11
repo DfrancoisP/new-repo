@@ -1,0 +1,25 @@
+/*David Preval
+sanfoundry c sharp
+This program takes the input from the user 
+to give a squared interger.*/
+
+using System;
+
+namespace ConsoleApp4
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+	    // Try Parse is used here to take a string and convert it 
+	    // to an interger and then multiply it by itself.
+            Console.WriteLine("Enter a number to get the number squared ");
+            string str = Console.ReadLine();
+            int intValue;
+            bool parseSuccess = Int32.TryParse(str, out intValue);
+            Console.WriteLine(parseSuccess ?
+            "The square of the number is " + intValue * intValue + "."
+            : "Invalid number!");
+        }
+    }
+}

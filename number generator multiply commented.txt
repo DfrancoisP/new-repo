@@ -1,0 +1,71 @@
+using System;
+
+namespace NumberGenerator
+{
+    class Program
+    {
+        public static void Main(string[] args)
+        {
+
+            //Here the user is prompted an multiplication equation. The intergers are generated randomly
+            Random numberGenerator = new Random();
+
+            int num01 = numberGenerator.Next(1, 11);
+            int num02 = numberGenerator.Next(1, 11);
+
+            Console.WriteLine("What is " + num01 + " times " + num02 + "?");
+
+            int answer = Convert.ToInt32(Console.ReadLine());
+            
+            //If the answer is correct the user will recieve a prompt of random messages indicating that they were right.
+           
+
+            if (answer == num01 * num02)
+            {
+                int responseIndex = numberGenerator.Next(1, 4);
+                switch(responseIndex)
+                {
+                    case 1:
+                        Console.WriteLine("Correct, well done!");
+                        break;
+                    case 2:
+                        Console.WriteLine("The answer was correct.");
+                        break;
+                    default :
+                        Console.WriteLine("Have you been practicing?");
+                        break;
+                   
+                }
+                
+
+            }
+            //here the math absolute method is used which converts everything in the paraenthysis to a positive interger
+            //also the answer is then evaluated and gives a response for the incorrect answer respectively 
+            else
+            {
+                int diff = Math.Abs(answer - (num01 * num02));
+
+                if (diff == 1)
+                {
+                    Console.WriteLine("So Close!");
+                }
+
+                else if (diff <= 10)
+                {
+                    Console.WriteLine("You can do better than that.");
+                }
+
+                else
+                {
+                    Console.WriteLine("you are not even close");
+                    
+                }
+
+                
+            }
+
+            Console.ReadKey();
+
+         }
+    }
+}

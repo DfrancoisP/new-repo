@@ -1,0 +1,42 @@
+/*David Preval
+https://www.dotnetperls.com/constructor
+"This constructor"
+This constructor. Sometimes in a class you have many constructors. 
+You can use "this" to have one constructor invocation call another 
+constructor method. This reduces code bloat.
+*/
+
+using System;
+
+class Mouse
+{
+    public Mouse() : this(-1, "")
+    {
+        // Uses constructor initializer.
+    }
+
+    public Mouse(int weight, string name)
+    {
+        // Constructor implementation.
+        Console.WriteLine("Constructor weight = {0}, name = {1}",
+            weight,
+            name);
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        // Test the 2 constructors for Mouse type.
+        Mouse mouse1 = new Mouse();
+        Mouse mouse2 = new Mouse(10, "Sam");
+    }
+}
+
+Output
+
+Constructor weight = -1, name =
+Constructor weight = 10, name = Sam
+
+

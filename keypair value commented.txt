@@ -1,0 +1,29 @@
+/*David Preval
+https://www.dotnetperls.com/keyvaluepair
+using a key value pair in a list*/
+
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+	/*We initialize a new List of type KeyValuePair. This shows the required syntax form.
+	Inside the brackets in the KeyValuePair, there are two types separated by a comma (string, int).
+	We can create a new KeyValuePair with its constructor. The constructor is
+ 	shown in the Add() calls.*/
+        // Shows a List of KeyValuePairs.
+        var list = new List<KeyValuePair<string, int>>();
+        list.Add(new KeyValuePair<string, int>("Cat", 1));
+        list.Add(new KeyValuePair<string, int>("Dog", 2));
+        list.Add(new KeyValuePair<string, int>("Rabbit", 4));
+
+        foreach (var element in list)
+        {
+            Console.WriteLine(element);
+        }
+    }
+}
+
+

@@ -1,0 +1,55 @@
+/*David Preval 
+https://www.dotnetperls.com/
+C# program that uses int.TryParse
+This program shows how to properly use the int tryparse method by 
+taking in a string and converting it to an int
+I modified so that the numbers are given by the user*/
+
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("Hello enter two sets of numbers");
+        // See if we can parse the 'text' string.
+        // If we can't, TryParse will return false.
+        // Note the "out" keyword in TryParse.
+        string text1 = Console.ReadLine();
+        int num1;
+        bool res = int.TryParse(text1, out num1);
+        if (res == false)
+        {
+            Console.WriteLine("String is not a number."); 
+        }
+
+        // Use int.TryParse on a valid numeric string.
+        string text2 = Console.ReadLine();
+        int num2;
+        if (int.TryParse(text2, out num2))
+        {
+            Console.WriteLine("number was assigned");
+        }
+
+        
+        Console.WriteLine(num1);
+        Console.WriteLine(num2);
+        return;
+    }
+}
+
+Output
+
+0
+10000
+TryParse notes. We must use out before the second argument in 
+int.TryParse. With "out", the compiler can help you make 
+sure your variables are always in a valid state.
+Parameters
+Tip:
+It is useful to know that the word "int" in the C# language 
+simply aliases the System.Int32 type.
+
+Therefore:
+If you see code that uses "System.Int32.Parse" or "System.Int32.TryParse", 
+it is equivalent to int.Parse and int.TryParse.

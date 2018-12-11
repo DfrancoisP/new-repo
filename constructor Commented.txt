@@ -1,0 +1,24 @@
+/*David Preval
+https://www.dotnetperls.com/constructor
+Here is a public constructor with 1 formal parameter. In Main, we invoke this constructor (with the new keyword) 
+to create new instances of the Widget type.
+The program creates a Widget with size 10, and then another with size 20.
+*/
+
+class Widget
+{
+    int _size;
+    public Widget(int size)
+    {
+        this._size = size;
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Widget widget1 = new Widget(10);
+        Widget widget2 = new Widget(20);
+    }
+}

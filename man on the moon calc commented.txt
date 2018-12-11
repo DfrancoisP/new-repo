@@ -1,0 +1,39 @@
+/*David Preval
+C# for dummies
+created a method in order to do a simple math equation
+I modified the program so that it will work with any weight given.*/
+
+using System;
+
+namespace ConsoleApp9
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            
+            int num = inputint("Enter weight of a man:");
+            
+            Console.WriteLine("The weight of the man is {0}lbs on the moon", num * .17);
+
+        }
+        public static int inputint(string prompt)
+        {
+            int result = 0;
+            while (true)
+            {
+                Console.WriteLine(prompt);
+                bool goodInput = Int32.TryParse(Console.ReadLine(), out result);
+                if (goodInput)
+                {
+                    break;
+                }
+                Console.WriteLine("\nInvalid input... try again.");
+            }
+            return result;
+        }
+
+    }
+
+}

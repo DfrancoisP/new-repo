@@ -1,0 +1,60 @@
+//David Preval
+//sanfoundry.com/csharp-programming-examples/
+//This program takes an input of month and day and lets the user know what day of the week it is.
+//The program at first gave the month and day and automatically returned the day of the week.
+//I changed it so that the user had to input the values 
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+
+/*A DateTime object in many programming languages describes a date and a time of day. 
+It can express either an instant in time 
+or a position on a calendar, depending on 
+the context in which it is used and the specific implementation. 
+
+This tag can be used for all date and time related issues. This program asks you for a date and 
+prints out the day of the week it falls on in the current year.*/
+
+
+
+namespace ConsoleApp2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // userDateTime is going to refer to a DateTime object (instance)           
+            // loop until we get a valid DateTime 
+            // get a date from the user with which to...
+            // try to instantiate a DateTime object
+
+            DateTime userDateTime;
+
+
+            while (true)
+            {
+
+                Console.WriteLine("Enter a date in month day format. \"Ex November 4\"");
+                string userinput = Console.ReadLine();
+
+
+                bool goodinput = DateTime.TryParse(userinput, out userDateTime);
+
+                if (!goodinput)
+                {
+                    Console.WriteLine("Thats not a valid date... try again.");
+                    continue;
+                }
+
+                break;
+            }
+
+            Console.WriteLine($"The day of the week is: {userDateTime.DayOfWeek}");
+            Console.ReadLine();
+        }
+    }
+}

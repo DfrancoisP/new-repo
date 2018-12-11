@@ -1,0 +1,24 @@
+/* David Preval
+https://www.dotnetperls.com/if
+a program to demonstrate the use of if statement 
+so print out a desired result*/
+/*This program computes the value of an expression. It 
+then tests it in an if-statement. 
+The condition inside the if is evaluated to a boolean value.
+True:
+The value equals 5 and thus the expression evaluates to true. 
+The inner block, with Console.WriteLine, is reached.*/
+
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        int value = 10 / 2;
+        if (value == 5)
+        {
+            Console.WriteLine(true);
+        }
+    }
+}

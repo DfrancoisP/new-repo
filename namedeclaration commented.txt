@@ -1,0 +1,15 @@
+//David Preval
+//sanfoundry c sharp
+//
+
+// Console output:
+// Hello, John!
+// Your full name is John Smith.
+// Declare some variables
+
+string firstName = "John";
+string lastName = "Smith";
+string fullName = firstName + " " + lastName;
+
+Console.WriteLine("Hello, " + firstName + "!");
+Console.WriteLine("Your full name is " + fullName + ".");

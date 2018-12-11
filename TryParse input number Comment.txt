@@ -1,0 +1,35 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp6
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int inputint; 
+            while (true) 
+            {
+		// the console will ask you to enter a number
+		// the inputstr string will equal what you type into the console
+		// the tryparse method will keep promting you to enter a 32 bit interger untill you do then the program will close.
+                Console.WriteLine("please enter a number? ");
+                string inputstr = Console.ReadLine(); 
+                if (Int32.TryParse(inputstr, out inputint))
+                {
+                    break;
+                }
+		}
+
+            Console.WriteLine("inputint=" + inputint);
+            Console.ReadLine();
+
+
+         
+            
+        }
+    }
+}

@@ -1,0 +1,40 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp6
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // inputint is referencing the int32 value 
+            int inputint;
+
+            while (true)
+            {   
+                //requests the user to enter a set of intergers 
+                //this will keep looping until the intergers are entered completely 
+                Console.WriteLine("please enter a set of numbers");
+                string inputstr = Console.ReadLine();
+                //try.parse method is used here to catch exceptions just in case the... 
+                //user types in something other than intergers
+                bool goodInput = Int32.TryParse(inputstr, out inputint);
+
+                if (!goodInput)
+                {
+                    Console.WriteLine("invalid syntax");
+                    continue;
+                }
+               
+                Console.WriteLine("inputint=" + inputint);
+                Console.ReadLine();
+                break;
+
+            }
+            
+        }
+    }
+}

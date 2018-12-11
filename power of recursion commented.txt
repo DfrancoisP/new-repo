@@ -1,0 +1,45 @@
+//David Preval
+//Renaissance Coders youtube.com
+//This code is an example of recursion
+//Recursion occurs when a method is called within itself
+
+using System;
+
+namespace Recursion
+
+{
+    class Program
+    {
+        
+        static void Main (string[] args)
+        {
+
+            float answer;
+
+            answer = Power(2,2);
+                  
+
+            Console.WriteLine(answer);
+
+           
+
+        }
+
+       
+            
+        
+        private static float Power(float num, int powerOf)
+        {
+            if (powerOf == 1)
+                return num;
+            return num * Power(num, powerOf - 1);
+               
+
+        }
+
+
+
+        
+    }
+
+}

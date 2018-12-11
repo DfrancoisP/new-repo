@@ -1,0 +1,20 @@
+/*David Preval
+ * https://www.dotnetperls.com/
+C# This is a small sample program that demonstrates how an if statement with int.tryparse is not required. 
+And sometimes, we can just treat a failed parse as 
+the default value (0 for int).*/
+
+
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        string error = Console.ReadLine();
+        // This will leave the result variable with a value of 0.
+        int result;
+        int.TryParse(error, out result);
+        Console.WriteLine(result);
+    }
+}

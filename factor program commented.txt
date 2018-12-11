@@ -1,0 +1,57 @@
+/*David Preval 
+ *sanfoundry C sharp
+ * C# Program to Display the Factors of the Entered Number
+ *This program takes in a number from a user and gives you the factors of that number.
+ *I modified this code to handle exceptions using the try catch methods and in the catch blocks I caught the exceptions i found.
+ */
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Program
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int num = 0;
+       
+            while (true)
+            {
+                Console.WriteLine("Enter the Number: ");
+                try
+                {
+                    num = int.Parse(Console.ReadLine());
+                    Console.WriteLine($"The Factors of {num} are: ");
+                }
+                catch (System.FormatException)
+                {
+                    Console.WriteLine("wrong syntax entered");
+                    continue;
+                }
+                catch (System.OverflowException)
+                {
+                    Console.WriteLine("number was to big for a 32 bit int");
+                    continue;
+                }
+
+                for (int x = 1; x <= num; x++)
+                {
+                    if (num % x == 0)
+                    {
+                        Console.WriteLine(x);
+                    }
+                }
+                Console.ReadLine();
+                break;
+                
+
+            }
+
+            
+           
+
+        }
+    }
+}

@@ -1,0 +1,260 @@
+// filestream_example.cs
+//David Preval
+// this code was adapted from:
+//     "FileStream Class"
+//     https://docs.microsoft.com/en-us/dotnet/api/system.io.filestream?
+//         view=netframework-4.7.2
+
+using System;
+using System.IO;
+using System.Text;
+
+//=========
+// The Microsoft .NET framework provides us with many sophisticated ways of 
+// effecting file input and output.  From what I have seen, we could probably
+// spend months exploring all of the various options that are provided for us
+// to use in persisting data beyond the confines of a single program. This
+// in-depth study would be a distracting diversion in learning how to use
+// the C# programming language. Still, it is important to know how to persist
+// data beyond the bounds of a single program.
+//
+// The FileStream Class is a low-level file I/O object that provides us with
+// just about everything we will ever need to save data from and reload it
+// into programs. In this program, I want to demonstrate a couple of different
+// ways of writing lines of text data out to a file, and then reading those
+// lines of text data back in from the file.
+//=========
+class Test
+{
+
+    //----------
+    public static void Main(string[] args)
+    {
+
+        
+
+              // what are we doing here?
+              //Looping through the length of args starting from 0
+                for(int ii=0;ii<args.Length;ii++)
+                {
+                    Console.WriteLine("args["+ii+"]="+args[ii]);
+                }
+                Console.WriteLine();
+        
+        string path = args[0];
+
+        // what are we doing here?
+        // If the variable path is in the first index of the array delete it 
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+        }
+
+        FileStream fs;
+
+        
+
+        //*     // Dan's slightly more basic way of creating the file.
+        Console.WriteLine("\nWRITE BLOCK #2");
+        // briefly explain the function of the
+        //  try { ... } catch() { ... } finally { ... }
+        // construct. you can probably be do it with 3 short bullet points.
+        //A try block is used to encapsulate a region of code
+        //a catch block is is used to handle exceptions log them and ignore them
+        //Finally allows you to execute certain code if an exception is thrown or not
+
+        try
+        {
+            // what are we doing here?
+            //This is creating a FileStream which will a new file and enable us to write onto the file. using the FileAccess will
+            //enable us to only write only and not read. 
+            //The InputWriteDriver method is asking for some text to write next to the fs file as well as giving the user the 
+            //ability to quit the program.
+            fs = new FileStream(path, FileMode.Create, FileAccess.Write);
+        }
+        catch (Exception)
+        {
+            Console.WriteLine("unable to create file: " + path);
+            return;
+        }
+
+        InputWriteDriver(fs);
+
+        // what are we doing here?
+        // closes the fs stream we 
+        // in the finally block the if the fs Filestream is not equal to null it will 
+        //release all the resources used by the stream
+
+        try
+        {
+            fs.Close();
+        }
+        finally
+        {
+            if (fs != null)
+            {
+                fs.Dispose();
+                fs = null; 
+            }
+        }
+        //*/
+
+        //*      // Microsoft's OO approach to opening the stream & reading it back.
+        Console.WriteLine("READ BLOCK #3");
+        using (fs = File.OpenRead(path))
+        {
+            ReadDumpBlocks(fs);
+        }
+        //*/
+
+        /*     // Dan more primitively opens the file and reads it back line-by-line.
+                Console.WriteLine("READ BLOCK #4");
+                try {
+                    // what are we doing here?
+                    //Here we are creating a FileStream or stream but will only be able to read the fs. If its not 
+                    // created catch the exception and print the message below.
+                    // the readdumpdriver method checks to make sure the fs file isnt giving the EOF Detection exception
+                    fs=new FileStream(path,FileMode.Open,FileAccess.Read);
+                } catch(Exception) {
+                    Console.WriteLine("unable to open file: "+path); 
+                    return;
+                }
+
+                ReadDumpDriver(fs);
+
+                // we've already explained this construct.
+                try {
+                    fs.Close();
+                } finally {
+                    if (fs != null) {
+                        fs.Dispose();
+                        fs=null;
+                    }
+                }
+        //*/
+    } // end method Main()
+
+    //----------
+    // summarize what we are doing here...
+    //The InputWriteDriver method makes it possible for the user to quit the program.
+    private static void InputWriteDriver(FileStream fs)
+    {
+        Console.WriteLine("gimme some text (type \"quit\" to exit): ");
+        for (; ; )
+        {
+            // what are we doing here?
+            //checks to see if the user has entered in "quit"
+            Console.Write("? ");
+            string inplin = Console.ReadLine();
+            if (inplin == "quit")
+            {
+                break;
+            }
+            WriteLine(fs, inplin);
+        }
+    } // end method InputWriteDriver()
+
+    //----------
+    // summarize what we are doing here...
+    //----------
+    private static void WriteLine(FileStream fs, string value)
+    {
+        // what are we doing here?
+        //the variable info is being converted into a byte array
+        byte[] info = new UTF8Encoding(true).GetBytes(value + "\r\n");
+        try
+        {
+            // what are we doing here?
+            //you are writing the data to the disk in raw bytes
+            fs.Write(info, 0, info.Length);
+        }
+        catch (Exception)
+        {
+            Console.WriteLine("unable to write to file: ");
+            return;
+        }
+    } // end method WriteLine()
+
+
+    private static bool EOFDetected = false;
+    //----------
+    // summarize what we are doing here...
+    //----------
+    private static void ReadDumpDriver(FileStream fs)
+    {
+        EOFDetected = false;
+        for (; ; )
+        {
+            string inplin = ReadLine(fs);
+            if (inplin == null)
+            {
+                break;
+            }
+            Console.WriteLine(inplin);
+        }
+    } // end method ReadDumpDriver()
+
+    //----------
+    // summarize what we are doing here...
+    //----------
+    private static void ReadDumpBlocks(FileStream fs)
+    {
+        byte[] buf = new byte[1024];
+        // what are we doing here?
+        // here a buffer is created for the byte array 
+        UTF8Encoding temp = new UTF8Encoding(true);
+        // what are we doing here?
+        // creating a Encoding variable so that the bytes will be able to be converted into a readable string
+
+        while (fs.Read(buf, 0, buf.Length) > 0)
+        {
+            // what are we doing here?
+            //
+            Console.WriteLine(temp.GetString(buf));
+        }
+    } // end method ReadDumpBlocks()
+
+    //----------
+    // summarize what we are doing here...
+    // This function is a bit complex.  It is similar to ReadDumpBlocks(), but
+    // instead of reading blocks, we are reading lines one-by-one.
+    //----------
+    private static string ReadLine(FileStream fs)
+    {
+        if (EOFDetected)
+        {
+            return null;
+        }
+
+        // TODO: rewrite this function to allow for arbitrarily long lines
+        // changed to fs.Length
+        byte[] buf = new byte[fs.Length];
+        int bufptr = 0;
+
+        int inchr;
+        for (; ; )
+        {
+            inchr = fs.ReadByte();
+            if (inchr == -1)
+            {
+                EOFDetected = true;
+                break;
+            }
+            if (inchr == 10)
+            {
+                break;
+            }
+            if (inchr == 13)
+            {
+                continue;
+            }
+            buf[bufptr++] = (byte)inchr;
+        }
+        // what are we doing here?
+        // the temp is used to convert bytes into a string
+        UTF8Encoding temp = new UTF8Encoding(true);
+        // what are we doing here?
+        //Returning the converted bytes that are now a string starting from index 0
+        return (temp.GetString(buf, 0, bufptr));
+    } // end method ReadLine()
+}

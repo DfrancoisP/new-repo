@@ -1,0 +1,24 @@
+/*David Preval
+dot perl
+This program calls TryParse on DateTime in order to output the 
+current time.*/
+
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        string now = "1/22/2017";
+        // Use TryParse on the DateTime type to parse a date.
+        DateTime parsed;
+        if (DateTime.TryParse(now, out parsed))
+        {
+            Console.WriteLine(parsed);
+        }
+    }
+}
+
+Output
+
+1/22/2017 12:00:00 AM

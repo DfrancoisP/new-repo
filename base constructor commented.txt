@@ -1,0 +1,40 @@
+//David Preval
+//https://www.dotnetperls.com/constructor
+
+
+using System;
+
+public class Bird
+{
+    public Bird(int value)
+    {
+        Console.WriteLine($"Bird() called with {value}");
+    }
+}
+
+
+/*The Parrot constructor has a "base" constructor call 
+(which means the Bird constructor is called when a Parrot is created).*/
+
+public class Parrot : Bird
+{
+    public Parrot(int value) : base(value)
+    {
+        Console.WriteLine($"Parrot called with {value}");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Parrot parrot = new Parrot(450);
+        Console.WriteLine(":::DONE:::");
+    }
+}
+
+Output
+
+Bird() called with 450
+Parrot called with 450
+:::DONE:::

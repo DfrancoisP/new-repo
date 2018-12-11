@@ -1,0 +1,42 @@
+//David Preval
+//Renaissance Coders youtube.com
+//This code is an example of recursion
+//Recursion occurs when a method is called within itself
+
+using System;
+
+namespace Recursion
+
+{
+    class Program
+    {
+        
+        static void Main (string[] args)
+        {
+
+            int answer;
+
+            answer = Factorial(5);
+
+            Console.WriteLine(answer);
+
+            bool running = true;
+                while (running)
+            {
+
+            };
+
+        }
+
+        private static int Factorial(int factorialNum)
+        {
+            // Always have an exit condition
+            if (factorialNum == 1)
+                return 1;
+            return factorialNum * Factorial(factorialNum - 1);
+        }
+
+        
+    }
+
+}
